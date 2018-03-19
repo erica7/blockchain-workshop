@@ -1,4 +1,6 @@
 'use strict';
+const Crypto = require('crypto');
+
 const BrewChain = function() {
     let chain = [];
     let currentBlock = {};
