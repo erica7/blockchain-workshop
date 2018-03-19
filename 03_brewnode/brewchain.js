@@ -1,4 +1,8 @@
 'use strict';
+// FROM https://github.com/dbjsdev/BrewChain
+
+const Crypto = require('crypto');
+
 const BrewChain = function() {
     let chain = [];
     let currentBlock = {};
@@ -7,7 +11,7 @@ const BrewChain = function() {
     function init(){
         genesisBlock = {
             index: 0
-          , timestamp: new Date().getTime()
+          , timestamp: 0 // All nodes have to start with same block
           , data: 'our genesis data'
           , previousHash: "-1"
         };
@@ -56,6 +60,11 @@ const BrewChain = function() {
         return chain;
     }
 
+    function replaceChain(newChain){
+      chain = newChain;
+      currentBlock = chain[chain.length-1];
+    }
+
     function checkNewBlockIsValid(block, previousBlock){
         if(previousBlock.index + 1 !== block.index){
             //Invalid index
@@ -75,6 +84,29 @@ const BrewChain = function() {
         return (createHash(block) == block.hash);
     }
 
+    function checkNewChainIsValid(newChain){
+      //Is the first block the genesis block?
+      if(createHash(newChain[0]) !== genesisBlock.hash ){
+        return false;
+      }
+
+      let previousBlock = newChain[0];
+      let blockIndex = 1;
+
+        while(blockIndex < newChain.length){
+          let block = newChain[blockIndex];
+
+          if(block.previousHash !== createHash(previousBlock)){
+            return false;
+          }
+
+          previousBlock = block;
+          blockIndex++;
+        }
+
+      return true;
+    }
+
     return {
         init,
         createBlock,
@@ -82,6 +114,10 @@ const BrewChain = function() {
         checkNewBlockIsValid,
         getLatestBlock,
         getTotalBlocks,
-        getChain
+        getChain,
+        checkNewChainIsValid,
+        replaceChain
     }
 };
+
+module.exports = BrewChain;

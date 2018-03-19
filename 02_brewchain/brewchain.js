@@ -1,4 +1,6 @@
 'use strict';
+// FROM https://github.com/dbjsdev/BrewChain
+
 const Crypto = require('crypto');
 
 const BrewChain = function() {
