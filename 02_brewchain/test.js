@@ -56,7 +56,7 @@ describe('BrewChain', () => {
     });
   });
 
-  it('should be not let an invalid block on the chain', () => {
+  it('should not let an invalid block on the chain', () => {
     const myBrew = new BrewChain();
     const data1 = 'data for the new block';
     const data2 = 'data for the bad block';
@@ -86,14 +86,14 @@ describe('BrewChain', () => {
       index: 1,
       data: data2
     });
-    expect(didAdd1).to.equal(true);
-    expect(didAdd2).to.equal(false);
+    expect(didAdd1).to.equal(true, 'block 1 should have been added to chain');
+    expect(didAdd2).to.equal(false, 'block 2 should not have been added to chain');
     expect(block2Retry).to.include({
       index: 2,
       data: data2
     });
-    expect(block2IsValid).to.equal(true);
-    expect(didAdd2Retry).to.equal(true);
+    expect(block2IsValid).to.equal(true, 'block 2 retry should be valid');
+    expect(didAdd2Retry).to.equal(true, 'block 2 retry should have been added to chain');
     expect(latestBlock).to.include({
       index: 2,
       data: data2,
