@@ -12,7 +12,7 @@ This exercise is to test usage of all the members of BrewChain.  BrewChain retur
     getChain
 }
 ```
-The test suite [test.js](/test.js) has a number of tests to exercise all the exposed members or BrewChain.  The tests are marked where you should fill them out.
+The test suite [test.js](/test.js) has a number of tests to exercise all the exposed members of BrewChain.  The tests are marked where you should fill them out.
 
 - Change to this directory and run `npm install`
 - Fill in the code in `test.js`

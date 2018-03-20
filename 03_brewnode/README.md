@@ -12,7 +12,7 @@ BrewNode wraps BrewChain In this exercise you will write a program that starts a
 }
 ```
 
-The test suite [test.js](/test.js) has a number of tests to exercise all the exposed members or BrewNode.  The tests are marked where you should fill them out.
+The test suite [test.js](/test.js) has a number of tests to exercise all the exposed members of BrewNode.  The tests are marked where you should fill them out.
 
 - Change to this directory and run `npm install`
 - Fill in the code in `test.js`.
