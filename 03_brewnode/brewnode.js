@@ -18,7 +18,7 @@ const BrewNode = function(port){
     const REQUEST_CHAIN = "REQUEST_CHAIN";
     const REQUEST_BLOCK = "REQUEST_BLOCK";
     const BLOCK = "BLOCK";
-	const CHAIN = "CHAIN";
+	  const CHAIN = "CHAIN";
 
     function init(){
 

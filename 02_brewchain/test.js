@@ -23,9 +23,11 @@ describe('BrewChain', () => {
     const myBrew = new BrewChain();
 
     // TODO: Initialize the chain
+    myBrew.init();
 
     // TODO: Get the chain from this BrewChain
-    const chain = {};
+    // const chain = {};
+    const chain = myBrew.getChain();
 
     expect(chain).to.have.property('length', 1);
     expect(chain[0]).to.include({
@@ -43,9 +45,11 @@ describe('BrewChain', () => {
 
     // TODO: Initialize brew, create a new block, add to chain
     // (hint: order of those steps is important)
-
-    const block = {};
-
+    
+    // const block = {};
+    myBrew.init();
+    const block = myBrew.createBlock(data);
+    myBrew.addToChain(block);
 
     const chain = myBrew.getChain();
     expect(chain).to.have.property('length', 2);
@@ -63,20 +67,20 @@ describe('BrewChain', () => {
     myBrew.init();
 
     // TODO: Create two blocks THEN try to add them
-    const block1 = {};
-    const block2 = {};
-    const didAdd1 = {};
-    const didAdd2 = {};
+    const block1 = myBrew.createBlock(data1);
+    const block2 = myBrew.createBlock(data2);
+    const didAdd1 = myBrew.addToChain(block1);
+    const didAdd2 = myBrew.addToChain(block2);
 
     // TODO: Create block 2 again and check to see if it will work
-    const block2Retry = {};
-    const block2IsValid = {};
-    const didAdd2Retry = {};
+    const block2Retry = myBrew.createBlock(data2);
+    const block2IsValid = myBrew.checkNewBlockIsValid(block2Retry, myBrew.getLatestBlock(0));
+    const didAdd2Retry = myBrew.addToChain(block2Retry);
 
 
     // TODO: Get latest blocks and total blocks off of chain
-    const latestBlock = {};
-    const totalBlocks = {};
+    const latestBlock = myBrew.getLatestBlock();
+    const totalBlocks = myBrew.getTotalBlocks();
 
     expect(block1).to.include({
       index: 1,

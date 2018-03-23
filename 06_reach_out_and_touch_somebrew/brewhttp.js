@@ -19,9 +19,9 @@ const BrewHTTP = function (http_port){
 	app.use(bodyParser.json());
 
   // TODO: change to app.post, '/addNode', with body url & port
-	app.get('/addNode/:port', (req, res)=>{
-		console.log(`${http_port}: `, 'add host: '+ String(Number.parseInt(req.params.port) + 1))
-		node1.addPeer('localhost', String(Number.parseInt(req.params.port) + 1))
+	app.post('/addNode', (req, res)=>{
+		console.log(`${http_port}: `, 'add host: '+ String(Number.parseInt(req.body.port) + 1))
+		node1.addPeer(req.body.host, String(Number.parseInt(req.body.port) + 1))
 
 		res.send();
 	})
@@ -34,7 +34,8 @@ const BrewHTTP = function (http_port){
 
   app.get('/brews', (req, res)=>{
 		const chain = node1.getChain();
-		console.log(`${http_port}: `, 'getting chain');
+    console.log(`${http_port}: `, 'getting chain');
+    console.log(req.body.port);
 		res.json(chain);
 	})
 
